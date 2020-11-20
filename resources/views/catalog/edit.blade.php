@@ -4,4 +4,6 @@
 
     Modificar película {{ $id }}
 
+
 @stop
+

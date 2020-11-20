@@ -2,6 +2,7 @@
 
 @section('content')
 
-    Listado de películas
+    Listado películas
 
 @stop
+

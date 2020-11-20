@@ -4,4 +4,6 @@
 
     Vista detalle película {{ $id }}
 
+
 @stop
+
