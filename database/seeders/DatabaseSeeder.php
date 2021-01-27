@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Movie;
+use App\Models\Pelicula;
 use App\Models\User;
 
 class DatabaseSeeder extends Seeder
@@ -17,11 +18,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         self::seedCatalog();
+        self::seedPelicula();
         self::seedUsers();
         $this->command->info('Tabla catálogo inicializada con datos!');
     }
 
-    private static function seedCatalog()
+	private static function seedCatalog()
     {
     	Movie::truncate();
     	foreach( self::$arrayPeliculas as $movie ) {
@@ -33,10 +35,25 @@ class DatabaseSeeder extends Seeder
 		    $p->rented = $movie['rented'];
 		    $p->synopsis = $movie['synopsis'];
 		    $p->save();
+        }
+    }
+
+    private static function seedPelicula()
+    {
+        Pelicula::truncate();
+    	foreach( self::$arrayPeliculas as $pelicula ) {
+		    $p = new Pelicula;
+		    $p->title = $pelicula['title'];
+		    $p->year = $pelicula['year'];
+		    $p->director = $pelicula['director'];
+		    $p->poster = $pelicula['poster'];
+		    $p->rented = $pelicula['rented'];
+		    $p->synopsis = $pelicula['synopsis'];
+		    $p->save();
 		}
     }
 
-    private static function seedUsers()
+	private static function seedUsers()
     {
     	User::truncate();
     	$usuario1 = new User();
