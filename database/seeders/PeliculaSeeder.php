@@ -3,58 +3,35 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Movie;
 use App\Models\User;
+use App\Models\Pelicula;
 
-class DatabaseSeeder extends Seeder
+class PeliculaSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call([
-        	PeliculaSeeder::class,
-        ]);
         self::seedCatalog();
-        self::seedUsers();
+        
         $this->command->info('Tabla catálogo inicializada con datos!');
     }
 
     private static function seedCatalog()
     {
-    	Movie::truncate();
-    	foreach( self::$arrayPeliculas as $movie ) {
-		    $p = new Movie;
-		    $p->title = $movie['title'];
-		    $p->year = $movie['year'];
-		    $p->director = $movie['director'];
-		    $p->poster = $movie['poster'];
-		    $p->rented = $movie['rented'];
-		    $p->synopsis = $movie['synopsis'];
+    	Pelicula::truncate();
+    	foreach( self::$arrayPeliculas as $pelicula ) {
+		    $p = new Pelicula;
+		    $p->title = $pelicula['title'];
+		    $p->year = $pelicula['year'];
+		    $p->director = $pelicula['director'];
+		    $p->poster = $pelicula['poster'];
+		    $p->rented = $pelicula['rented'];
+		    $p->synopsis = $pelicula['synopsis'];
 		    $p->save();
 		}
     }
 
-    private static function seedUsers()
-    {
-    	User::truncate();
-    	$usuario1 = new User();
-    	$usuario1->name = 'Alberto';
-    	$usuario1->email = 'alberto.sierra@murciaeduca.es';
-    	$usuario1->password = bcrypt('12345678');
-    	$usuario1->save();
-
-    	$usuario2 = User::create([
-    		'name' => 'Otro usuario',
-    		'email' => 'otroUsuario@murciaeduca.es',
-    		'password' => bcrypt('otroUsuario'),
-    	]);
-
-    }
+    
 
 
 	private static $arrayPeliculas = array(
