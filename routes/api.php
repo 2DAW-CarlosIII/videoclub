@@ -44,3 +44,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('peliculas', PeliculaController::class);
 
 Route::get('peliculas/search/{search}', [PeliculaController::class, 'search'])->name('peliculas.search');
+
+Route::get('peliculas/id/{id}', [PeliculaController::class, 'id'])->name('peliculas.id');

@@ -39,6 +39,18 @@ class PeliculaController extends Controller
         return response()->json(json_decode($response));
     }
 
+    public function id($id)
+    {
+
+        $host = 'www.omdbapi.com';
+        $response = Http::get('http://' . $host . '/', [
+            'apikey' => env('OMDBAPI_KEY'),
+            'i' => $id,
+            'r' => 'json'
+        ]);
+        return response()->json(json_decode($response));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
