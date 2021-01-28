@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\PeliculaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,7 @@ Route::post('/tokens/create', function (Request $request) {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('peliculas', PeliculaController::class);
+
+Route::get('peliculas/search/{search}', [PeliculaController::class, 'search'])->name('peliculas.search');

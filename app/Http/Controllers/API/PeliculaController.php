@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pelicula;
-use Illuminate\Http\Request;
 use App\Http\Resources\PeliculaResource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class PeliculaController extends Controller
@@ -20,8 +20,15 @@ class PeliculaController extends Controller
         return PeliculaResource::collection(Pelicula::paginate());
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  String  $search
+     * @return \Illuminate\Http\Response
+     */
     public function search($search)
     {
+
         $host = 'www.omdbapi.com';
         $response = Http::get('http://' . $host . '/', [
             'apikey' => env('OMDBAPI_KEY'),
