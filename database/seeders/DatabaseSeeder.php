@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Movie;
 use App\Models\Pelicula;
 use App\Models\User;
+use Laravel\Sanctum\HasApiTokens;
 
 class DatabaseSeeder extends Seeder
 {
