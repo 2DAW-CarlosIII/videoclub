@@ -48,6 +48,15 @@ class PeliculaController extends Controller
             'i' => $id,
             'r' => 'json'
         ]);
+        $p = new Pelicula;
+		$p->title = $response['Title'];
+		$p->year = $response['Year'];
+		$p->director = $response['Director'];
+		$p->poster = $response['Poster'];
+		$p->rented = 0;
+		$p->synopsis = $response['Plot'];
+        $p->save();
+
         return response()->json(json_decode($response));
     }
 
