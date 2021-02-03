@@ -16,7 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        
+        
+        $this->call([
+        	UsersTableSeeder::class,
+        ]);
+        
         \App\Models\User::factory(10)->create();
+
         self::seedCatalog();
         self::seedPeliculas();
         $this->command->info('Tabla catálogo inicializada con datos!');
