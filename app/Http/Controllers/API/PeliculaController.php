@@ -108,6 +108,8 @@ class PeliculaController extends Controller
      */
     public function destroy(Pelicula $pelicula)
     {
+        $this->authorize('delete', $pelicula);
+
         $pelicula->delete();
     }
 }
