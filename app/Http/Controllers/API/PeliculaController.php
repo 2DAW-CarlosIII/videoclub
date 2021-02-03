@@ -47,6 +47,9 @@ class PeliculaController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->user()->cannot('create',Pelicula::class)) {
+            abort(403);
+        }
 
         $pelicula = json_decode($request->getContent(), true);
 
@@ -106,8 +109,12 @@ class PeliculaController extends Controller
      * @param  \App\Models\Pelicula  $pelicula
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pelicula $pelicula)
+    public function destroy(Request $request, Pelicula $pelicula)
     {
+        if ($request->user()->cannot('delete',$pelicula)) {
+            abort(403);
+        }
+
         $pelicula->delete();
     }
 }
