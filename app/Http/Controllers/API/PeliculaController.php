@@ -17,6 +17,7 @@ class PeliculaController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Pelicula::class);
         return PeliculaResource::collection(Pelicula::paginate());
     }
 
@@ -47,7 +48,7 @@ class PeliculaController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->authorize('create', Pelicula::class);
         $pelicula = json_decode($request->getContent(), true);
 
         $pelicula = Pelicula::create($pelicula);
@@ -82,6 +83,7 @@ class PeliculaController extends Controller
      */
     public function show(Pelicula $pelicula)
     {
+        $this->authorize('view', $pelicula);
         return new PeliculaResource($pelicula);
     }
 
@@ -94,6 +96,7 @@ class PeliculaController extends Controller
      */
     public function update(Request $request, Pelicula $pelicula)
     {
+        $this->authorize('update', $pelicula);
         $peliculaData = json_decode($request->getContent(), true);
         $pelicula->update($peliculaData);
 
@@ -108,6 +111,8 @@ class PeliculaController extends Controller
      */
     public function destroy(Pelicula $pelicula)
     {
+        $this->authorize('delete', $pelicula);
         $pelicula->delete();
+        
     }
 }
