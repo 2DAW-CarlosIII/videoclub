@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Movie;
 use App\Models\Pelicula;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,27 @@ class DatabaseSeeder extends Seeder
         self::seedCatalog();
         self::seedPeliculas();
         $this->command->info('Tabla catálogo inicializada con datos!');
+
+        DB::table('users')->insert([
+            'name' => 'Mario Lopez',
+            'email' => 'mario@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'administrador' => true,
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Alberto Sierra',
+            'email' => 'alberto@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'proveedor' => true,
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Maria de los Reyes',
+            'email' => 'sinPermisos@peliculas.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        ]);
+
     }
 
     private static function seedCatalog()
