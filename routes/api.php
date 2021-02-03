@@ -17,8 +17,9 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::post('tokens/create', [LoginController::class,'createToken']);
+Route::apiResource('peliculas', PeliculaController::class)->middleware('auth:sanctum');
 
+Route::post('tokens/create', [LoginController::class,'createToken']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

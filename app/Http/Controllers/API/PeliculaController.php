@@ -94,6 +94,7 @@ class PeliculaController extends Controller
      */
     public function update(Request $request, Pelicula $pelicula)
     {
+        $this->authorize('update', $pelicula);
         $peliculaData = json_decode($request->getContent(), true);
         $pelicula->update($peliculaData);
 
