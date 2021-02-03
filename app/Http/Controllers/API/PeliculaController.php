@@ -48,6 +48,7 @@ class PeliculaController extends Controller
     public function store(Request $request)
     {
 
+        $this->authorize('create', Pelicula::class);
         $pelicula = json_decode($request->getContent(), true);
 
         $pelicula = Pelicula::create($pelicula);
@@ -109,5 +110,6 @@ class PeliculaController extends Controller
     public function destroy(Pelicula $pelicula)
     {
         $pelicula->delete();
+        $this->authorize('delete', $pelicula);
     }
 }
